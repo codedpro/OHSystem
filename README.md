@@ -1,11 +1,11 @@
 # GHost++ (OHSystem) — Dockerized Fork by codedpro
 
-This repository is a modernized fork of the original\*\* **[OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus), enhanced with full** \***\*Docker support** to make compiling and running the bot easier on** \*\***modern systems** including** \*\* **macOS (Intel & ARM), Linux, and Docker Desktop environments** .
+This repository is a modernized fork of the original [OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus), enhanced with full **Docker support** to make compiling and running the bot easier on **modern systems** including **macOS (Intel & ARM), Linux, and Docker Desktop environments**.
 
 ## ✨ Key Features
 
 - Dockerfile with full support for legacy dependencies (GCC 4.8, Boost 1.54, Python 2.7, MySQL++)
-- Updated\*\* \*\*`easy_install.sh` script for headless builds
+- Updated `easy_install.sh` script for headless builds
 - Works on modern platforms including Apple Silicon (M1/M2)
 - Single-command export of compiled binary and necessary runtime files
 
@@ -69,14 +69,14 @@ ghost-ready/
 
 ## 📅 Runtime Notes
 
-- You** \*\***must** include** **`default.cfg` in the** \*\*`config/` folder.
-- The binary expects maps to be present in a\*\* \*\*`maps/` folder if hosting is enabled.
-- The\*\* **`plugins/` and** \*\*`mapcfgs/` folders are optional, depending on your config.
+- You **must** include `default.cfg` in the `config/` folder.
+- The binary expects maps to be present in a `maps/` folder if hosting is enabled.
+- The `plugins/` and `mapcfgs/` folders are optional, depending on your config.
 
 ---
 
 ## 📊 Credits
 
-Based on the legendary\*\* \*\*[OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus)
+Based on the legendary [OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus)
 
-Docker modernization and build tooling by\*\* \*\*[codedpro](https://github.com/codedpro)
+Docker modernization and build tooling by [codedpro](https://github.com/codedpro)
