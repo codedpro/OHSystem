@@ -15,7 +15,7 @@ This repository is a modernized fork of the original [OHSystem/GHost++](https://
 
 ```bash
 git clone https://github.com/codedpro/OHSystem.git
-cd OHSystem
+cd OHSystem/ghost
 docker buildx build --platform linux/amd64 -t ghost-legacy --load .
 ```
 
