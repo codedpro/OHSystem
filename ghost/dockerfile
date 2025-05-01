@@ -1,0 +1,31 @@
+FROM ubuntu:14.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install legacy-compatible tools with default versions (no longer pin exact versions)
+RUN apt-get update && apt-get install -y \
+    gcc-4.8 g++-4.8 build-essential \
+    make cmake \
+    libboost-all-dev \
+    libmysql++-dev \
+    libbz2-dev \
+    libgmp3-dev \
+    python \
+    python-dev \
+    git unzip wget
+
+# Set gcc/g++ default to 4.8
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+
+# Set working directory inside container
+WORKDIR /ghost
+
+# Copy local project into container
+COPY . .
+
+# Make script executable
+RUN chmod +x easy_install.sh
+
+# Run the install script automatically
+CMD ["./easy_install.sh"]
