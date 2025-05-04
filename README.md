@@ -1,13 +1,13 @@
-# GHost++ (OHSystem) — Dockerized Fork by codedpro
+# GHost++ (OHSystem) — 2025 Version by Codedpro
 
-This repository is a modernized fork of the original [OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus), enhanced with full **Docker support** to make compiling and running the bot easier on **modern systems** including **macOS (Intel & ARM), Linux, and Docker Desktop environments**.
+This repository provides a Dockerized environment for building and running the classic [OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus) bot, with full **Docker support** for compiling and running on **modern systems** including **macOS (Intel & ARM), Linux, and Docker Desktop environments**.
 
 ## ✨ Key Features
 
 - Dockerfile with full support for legacy dependencies (GCC 4.8, Boost 1.54, Python 2.7, MySQL++)
 - Updated `easy_install.sh` script for headless builds
 - Works on modern platforms including Apple Silicon (M1/M2)
-- Single-command export of compiled binary and necessary runtime files
+- One-liner export of the compiled bot and runtime files
 
 ---
 
@@ -15,7 +15,7 @@ This repository is a modernized fork of the original [OHSystem/GHost++](https://
 
 ```bash
 git clone https://github.com/codedpro/OHSystem.git
-cd OHSystem
+cd OHSystem/ghost
 docker buildx build --platform linux/amd64 -t ghost-legacy --load .
 ```
 
@@ -23,55 +23,40 @@ This compiles GHost++ with all dependencies inside a clean Docker container.
 
 ---
 
-## 🚀 Run and Test Inside Docker
-
-```bash
-docker run -it --rm ghost-legacy
-cd bot
-./ghost++
-```
-
-You should see:
-
-```
-[GHOST] using config file [default.cfg]
-[GHOST] starting GHost++ v...
-```
-
----
-
 ## 📤 Export the Compiled Bot
 
-Run this on your host machine to extract everything required to run the bot outside Docker:
+> You must first start a container from the built image to extract its contents:
 
 ```bash
 docker create --name ghost-temp ghost-legacy
+```
 
-docker cp ghost-temp:/ghost/ghost++ ./ghost-ready/ghost++
-docker cp ghost-temp:/ghost/config ./ghost-ready/config
-docker cp ghost-temp:/ghost/plugins ./ghost-ready/plugins
-docker cp ghost-temp:/ghost/mapcfgs ./ghost-ready/mapcfgs
+Then run the following to copy the compiled files into your current directory:
 
+```bash
+docker cp ghost-temp:/ghost/bot .
 docker rm ghost-temp
 ```
 
 You will get a folder like:
 
 ```
-ghost-ready/
+./bot/
 ├── ghost++         # Compiled bot binary
-├── config/         # Main .cfg files like default.cfg, map.cfg
+├── default.cfg     # Main bot config
+├── mysql.cfg       # Database config (optional)
 ├── plugins/        # Optional plugin support
-├── mapcfgs/        # Map-specific configurations
+├── languages/      # Language localization files
+├── *.txt files     # insult.txt, rules.txt, etc.
 ```
 
 ---
 
 ## 📅 Runtime Notes
 
-- You **must** include `default.cfg` in the `config/` folder.
+- You **must** include `default.cfg` alongside the binary.
 - The binary expects maps to be present in a `maps/` folder if hosting is enabled.
-- The `plugins/` and `mapcfgs/` folders are optional, depending on your config.
+- Plugins and other configs will be loaded automatically if present in the same directory.
 
 ---
 
@@ -80,3 +65,4 @@ ghost-ready/
 Based on the legendary [OHSystem/GHost++](https://github.com/ohsystem/ghostplusplus)
 
 Docker modernization and build tooling by [codedpro](https://github.com/codedpro)
+
