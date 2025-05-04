@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  # Stage 1 ‑ build the image (runs only once)
+  build:
+    platform: linux/amd64 # Apple Silicon needs x86 emulation
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghost-legacy
+    command: /bin/true # just build then exit
+
+  # Stage 2 ‑ run the bot
+  ghost:
+    platform: linux/amd64 # run the same x86 image
+    image: ghost-legacy
+    working_dir: /ghost/bot
+    command: ./ghost++
+    tty: true
+    stdin_open: true
+    depends_on:
+      - build
+  #  volumes:
+  #     - ./bot:/ghost/bot # live‑edit configs & maps from host
